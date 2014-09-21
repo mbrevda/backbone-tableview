@@ -1,15 +1,20 @@
 var Backbone = require('backbone'),
-    Template = require('templates/TableView/th.hbs')
+    _ = require('underscore')
+
+_.templateSettings = {
+    interpolate: /\{\{(.+?)\}\}/g
+}
 
 module.exports = Backbone.View.extend({
     tagName: 'th',
+    template: '{{text}}<i class="fa fa-caret-up"></i>',
     initialize: function(opts) {
         this.text = opts.text || ''
 
         this.render()
     },
     render: function() {
-        this.$el.html(Template({text: this.text}))
+        this.$el.html(_.template({text: this.text}))
     },
     renderState: function(foo, order) {
         var i = this.$('i')

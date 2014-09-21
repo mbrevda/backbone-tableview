@@ -17,6 +17,7 @@ npm install backbone-tableview --save
 
 ## CI
 TableView continuous integrations is handled by Wercker:
+
 [![wercker status](https://app.wercker.com/status/ed888333a4f3fb17e3738866f446c5b9/m "wercker status")](https://app.wercker.com/project/bykey/ed888333a4f3fb17e3738866f446c5b9)
 
 ## Testing
