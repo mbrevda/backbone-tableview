@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
     KinView = require('backbone-kinview'),
-    Row = require('js/TableView/views/theadTr.js')
+    Row = require('./theadTr.js')
 
 module.exports = KinView.extend({
     tagName: 'thead',

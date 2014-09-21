@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
-    THead = require('js/TableView/views/thead'),
-    TBody = require('js/TableView/views/tbody')
+    THead = require('./thead'),
+    TBody = require('./tbody')
 
 module.exports = Backbone.View.extend({
     tagName: 'table',

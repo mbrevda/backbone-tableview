@@ -1,8 +1,8 @@
 var Backbone = require('backbone'),
     _ = require('underscore'),
     KinView = require('backbone-kinview'),
-    Tr = require('js/TableView/views/tbodyTr.js'),
-    Sorter = require('js/TableView/sorter')
+    Tr = require('./tbodyTr.js'),
+    Sorter = require('../../sorter')
 
 module.exports = KinView.extend({
     tr: Tr,

@@ -1,8 +1,8 @@
 var Backbone = require('backbone'),
     _ = require('underscore'),
     KinView = require('backbone-kinview'),
-    Th = require('js/TableView/views/theadTh.js'),
-    thModel = require('js/TableView/models/th.js')
+    Th = require('./theadTh.js'),
+    thModel = require('../models/th.js')
 
 module.exports = KinView.extend({
     tagName: 'tr',
