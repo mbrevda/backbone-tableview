@@ -1,5 +1,5 @@
 # TableView
-*TableView* is a [Backbone.js](http://backbonejs.org/) view that provides full 
+**TableView** is a [Backbone.js](http://backbonejs.org/) view that provides full 
 lifecyle support for tables, including filtering and sorting. It remains 
 uncomplex by relying on (KinView)[https://github.com/mbrevda/backbone-kinview]
 for basic view management.
