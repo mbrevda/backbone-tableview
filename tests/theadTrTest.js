@@ -7,10 +7,10 @@ var TheadTr = require('../src').theadTr
 describe('TheadTr', function(){
     beforeEach(function(){
         this.v = new TheadTr({})
-    }) 
+    })
 
     it('tagName is tr', function(){
-        this.v.tagName.should.eql('tr')    
+        this.v.tagName.should.eql('tr')
     })
 
     it('should have exclusive state', function(){
@@ -19,10 +19,10 @@ describe('TheadTr', function(){
 
     it('addCol() should add a th', function(){
         this.v.addCol({text: 'foobar'})
-        
+
         this.v.$el.children().eq(0).text().should.eql('foobar')
     })
-    
+
     it('should not have state if a click callback isnt passed', function(){
         var view = this.v.addCol({text: 'foo'})
 
@@ -31,7 +31,7 @@ describe('TheadTr', function(){
 
     it('should have state if a click callback is passed', function(){
         var view = this.v.addCol({text: 'foo', click: function(){}})
-        
+
         this.v.children.where({view: view})[0].get('hasState').should.be.falsse
     })
 
@@ -39,5 +39,11 @@ describe('TheadTr', function(){
         var view = this.v.addCol({text: 'foo', click: function(){done()}})
 
         view.$el.trigger('click')
+    })
+
+    it('remove() should remove all children', function(){
+        this.v.remove()
+
+        this.v.children.length.should.eql(0)
     })
 })

@@ -28,7 +28,7 @@
   "homepage": "https://github.com/mbrevda/backbone-tableview",
   "dependencies": {
     "backbone": "^1.1.2",
-    "backbone-kinview": "0.0.2",
+    "backbone-kinview": "^0",
     "jquery": "^2.1.1",
     "underscore": "^1.7.0"
   },

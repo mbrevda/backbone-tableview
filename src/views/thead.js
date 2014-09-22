@@ -11,8 +11,9 @@ module.exports = KinView.extend({
     render: function() {
         this.$el.append(this.row.$el)
     },
+    // raw add, you should probably be using this.row.addCol()
     add: function() {
-        return this.row.add.apply(this, arguments)
+        return this.row.add.apply(this.row, arguments)
     },
     remove: function() {
         this.row.remove()
