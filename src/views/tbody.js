@@ -52,6 +52,9 @@ module.exports = KinView.extend({
         })
     },
     rerenderChildren: function() {
+        if (!this.collection) {
+            return false
+        }
         this.removeAll()
         this.collection.each(_.bind(this.renderRow, this))
     },
