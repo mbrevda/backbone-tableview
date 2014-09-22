@@ -7,18 +7,18 @@ _.templateSettings = {
 
 module.exports = Backbone.View.extend({
     tagName: 'th',
-    template: '{{text}}<i class="fa fa-caret-up"></i>',
+    template: _.template('{{text}}<i class="fa fa-caret-up"></i>'),
     initialize: function(opts) {
         this.text = opts.text || ''
 
         this.render()
     },
     render: function() {
-        this.$el.html(_.template({text: this.text}))
+        this.$el.html(this.template({text: this.text}))
     },
     renderState: function(foo, order) {
         var i = this.$('i')
-        
+
         switch (order) {
             case 'up':
                 this.$el.addClass('active')
