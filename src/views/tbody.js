@@ -21,7 +21,7 @@ module.exports = KinView.extend({
 
         this.collection.each(_.bind(this.renderRow, this))
         this.listenTo(this.collection, 'add', _.bind(this.renderRow, this))
-        this.listenTo(this.collection, 'sort', this.rerenderChildren, this)
+        this.listenTo(this.collection, 'remove sort', this.rerenderChildren, this)
     },
     renderRow: function(model) {
         if (this.filter(model)) {
