@@ -1,6 +1,6 @@
 {
   "name": "backbone-tableview",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A backbone.js table view with built in lifecycle management for child elements",
   "main": "index.js",
   "directories": {
