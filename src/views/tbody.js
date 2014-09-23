@@ -7,8 +7,8 @@ var Backbone = require('backbone'),
 module.exports = KinView.extend({
     tr: Tr,
     tagName: 'tbody',
-    filters: {},
     initialize: function(opts) {
+        this.filters = {}
         if (opts && opts.collection) {
             this.initCollection(opts.collection)
         }
