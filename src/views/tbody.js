@@ -9,6 +9,7 @@ module.exports = KinView.extend({
     tagName: 'tbody',
     initialize: function(opts) {
         this.filters = {}
+     
         if (opts && opts.collection) {
             this.initCollection(opts.collection)
         }
@@ -17,6 +18,15 @@ module.exports = KinView.extend({
     },
     initCollection: function(collection) {
         this.removeAll()
+
+        if (this.collection) {
+            this.stopListening(this.collection)
+        }
+        
+        if (!(collection instanceof Backbone.Collection)) {
+            return true
+        }
+
         this.collection = collection
 
         this.collection.each(_.bind(this.renderRow, this))
@@ -53,9 +63,10 @@ module.exports = KinView.extend({
     },
     rerenderChildren: function() {
         this.removeAll()
-        if (!this.collection) {
+        if (!(this.collection instanceof Backbone.Collection)) {
             return false
         }
+
         this.collection.each(_.bind(this.renderRow, this))
     },
     getSorter: function (attr, sorter) {
@@ -66,6 +77,6 @@ module.exports = KinView.extend({
         this.children.sorter.call(this.children, sorter)
     },
     removeAll: function() {
-        this.children.removeAll()
+        return this.children.removeAll.apply(this.children)
     }
 })
