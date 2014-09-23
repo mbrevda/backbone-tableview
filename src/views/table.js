@@ -9,11 +9,13 @@ module.exports = Backbone.View.extend({
         this.body = new TBody()
 
         Backbone.View.apply(this, arguments)
+        this.superRemove = Backbone.View.prototype.remove
     },
     render: function() {
-        //this.$el.append(Template())
         this.$el.append(this.head.$el)
         this.$el.append(this.body.$el)
+        
+        return this
     },
     remove: function() {
         this.head.remove()
@@ -25,6 +27,6 @@ module.exports = Backbone.View.extend({
         return this.head.row.addCol.apply(this.head.row, arguments)
     },
     addRow: function() {
-        return this.body.add.apply(this.body, arguments)
+        return this.body.addRow.apply(this.body, arguments)
     }
 })
