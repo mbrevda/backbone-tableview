@@ -73,9 +73,6 @@ module.exports = KinView.extend({
         var s = new Sorter(this.collection, attr, sorter)
         return s.getSorter()
     },
-    setSorter: function(sorter) {
-        this.children.sorter.call(this.children, sorter)
-    },
     removeAll: function() {
         return this.children.removeAll.apply(this.children)
     }

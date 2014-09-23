@@ -4,7 +4,7 @@ var should = require('should'),
 Backbone.$ = global.window.$
 var Tbody = require('../src').tbody
 
-describe.only('TBody', function(){
+describe('TBody', function(){
     beforeEach(function(){
         this.v = new Tbody()
         this.c = new Backbone.Collection([
@@ -69,7 +69,48 @@ describe.only('TBody', function(){
     })
 
     it('rerenderChildren() only render if collection is valid', function(){
-        this.v.rerenderChildren()
+        var that = this
 
+        ;(function(){
+            that.v.rerenderChildren()
+        }).should.not.throw()
+    })
+
+    it('addFilter()', function(){
+        this.v.addFilter('foo', function(){})
+        this.v.filters['foo'].should.be.type('function')
+    })
+
+    it('removeFilter()', function(){
+        this.v.addFilter('foo', function(){})
+        this.v.removeFilter('foo')
+
+        ;(this.v.filters['foo'] === undefined).should.be.ok
+    })
+
+    it('filter() true', function(){
+        this.v.addFilter('true', function(value){
+            return value == 'foo'
+        })
+
+        this.v.filter('foo').should.be.true
+    })
+    
+    it('clearFilters()', function(){
+        this.v.addFilter('foo', function(){})
+        this.v.clearFilters()
+        this.v.filters.should.be.empty
+    })
+
+    it('filter() false', function(){
+        this.v.addFilter('true', function(value){
+            return value !== 'foo'
+        })
+
+        this.v.filter('foo').should.be.false
+    })
+
+    it('getSorter() should return a valid sorter', function(){
+        this.v.getSorter('name', function(){}).should.be.type('function')
     })
 })
