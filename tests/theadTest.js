@@ -4,17 +4,17 @@ var should = require('should'),
 Backbone.$ = global.window.$
 var Thead = require('../src').thead
 
-describe('TheadTr', function(){
+describe('Thead', function(){
     beforeEach(function(){
         this.v = new Thead()
     })
-    
+
     it('add() should add a th to the tr', function(){
         var view = Backbone.View.extend({
             className: 'foobar',
             tagName: 'th'
         })
-        this.v.add({view: new view() }) 
+        this.v.add({view: new view() })
 
         this.v.row.children.length.should.eql(1)
         this.v.$el.find('tr').find('th').hasClass('foobar').should.be.true
