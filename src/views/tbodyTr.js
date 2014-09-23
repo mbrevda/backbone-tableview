@@ -1,4 +1,5 @@
-var Backbone = require('backbone')
+var Backbone = require('backbone'),
+    _ = require('underscore')
 
 module.exports = Backbone.View.extend({
     tagName: 'tr',
