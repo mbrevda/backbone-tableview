@@ -6,5 +6,7 @@ Table.thead = require('./views/thead')
 Table.theadTh = require('./views/theadTh')
 Table.theadTr = require('./views/theadTr')
 Table.sorter = require('./sorter')
+Table.models = {}
+Table.models.th = require('./models/th')
 
 module.exports = Table
