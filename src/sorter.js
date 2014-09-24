@@ -3,6 +3,7 @@ var _ = require('underscore')
 var Sorter = function (collection, attr, sorter) {
     this.collection = collection
     this.attr = attr
+    this.isReverse = null
 
     this.sorter =
         typeof this[sorter] == 'function'
@@ -12,15 +13,13 @@ var Sorter = function (collection, attr, sorter) {
 
 module.exports = Sorter
 
-Sorter.prototype.getSorter = function() {
+Sorter.prototype.getSorter = function(model) {
     var that = this
     return function(model) {
         var state = model.get('state')
 
         if (state !== null) {
             that.isReverse = state == 'up' ? false : true
-        } else {
-            that.isReverse = null
         }
 
 
@@ -43,8 +42,13 @@ Sorter.prototype.string = function(a, b) {
 
 Sorter.prototype.int = function(a, b) {
     var rep = /[^0-9]/g
-    var i = Number(getAttr(a, this.attr).replace(rep, '')),
-        j = Number(getAttr(b, this.attr).replace(rep, ''))
+
+    var i = getAttr(a, this.attr),
+        j = getAttr(b, this.attr)
+
+    i = _.isNumber(i) ? i : Number(i.replace(rep, ''))
+    j = _.isNumber(j) ? j : Number(j.replace(rep, ''))
+
     if (this.isReverse) {
         return j <= i ? -1 : 1
     }
@@ -57,7 +61,7 @@ Sorter.prototype.reset = function() {
    var origSorter = this.sorter
 
    this.attr = 'cid'
-   this.isReverse = false
+   this.isReverse = null
    this.collection.comparator = _.bind(this.int, this)
    this.collection.sort()
 
