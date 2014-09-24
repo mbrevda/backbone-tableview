@@ -93,6 +93,9 @@ describe('Sorter', function(){
 
         s(m)
         
+        this.c.pluck('name').should.eql(['zach', 'marry', 'jim', 'adam'])
+        this.c.toJSON().should.not.eql(orig)
+
         var s2 = (new Sorter(this.c, 'name', 'string')).getSorter()
         var m2 = new Backbone.Model({state: null})
         
