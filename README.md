@@ -34,7 +34,7 @@ Issues can be opened in the [usual location](https://github.com/mbrevda/backbone
 
 # Usage
 ## Prerequisits
-All of TableViews basic features can be used out of the box with no dependencies other than those installed by npm. TableViews sorting options (see below) use [Font Awesome's](http://fortawesome.github.io/Font-Awesome/) [fa-caret-up](http://fortawesome.github.io/Font-Awesome/icon/caret-up/) and [fa-caret-down](http://fortawesome.github.io/Font-Awesome/icon/caret-down/) class. Additionally, the roughly the following css is used:
+TableViews sorting options (see below) use [Font Awesome's](http://fortawesome.github.io/Font-Awesome/) [fa-caret-up](http://fortawesome.github.io/Font-Awesome/icon/caret-up/) and [fa-caret-down](http://fortawesome.github.io/Font-Awesome/icon/caret-down/) class to indicate sort status. Additionally, roughly the following css is used:
 
 ```css
 
@@ -75,13 +75,13 @@ var table = TableView.extend({
 
 ```
 
-Note that `this` in TableView contains en extremely limited amount of table manipulation tools. To access most methods, you'll need to call their containers. I.e. `this.body.someMethod()`
+Note that `this` in TableView contains an extremely limited amount of table manipulation tools. To access most methods, call their containers. I.e. `this.body.someMethod()`
 
 ### Adding Columns (table headers)
 Adding table headers is straightforward:
 
 ```js
-table.addColumn({text: 'foo'})
+this.addColumn({text: 'foo'})
 
 ```
 
@@ -91,7 +91,7 @@ Adding rows to the table requires passing a valid Backbone.Model to the table:
 ```js
 
 var m = new Backbone.Model({foo: 'bar'})
-table.addRow(m)
+this.addRow(m)
 ```
 
 Passing a collection to the table will allow the table to auto-append all items of the collection to the table and manage their lifecycle including adding items as they get added to the collection, appending the items to the table, and cleaning up when the child view is removed. To pass a collection to the table:
@@ -103,7 +103,7 @@ table.body.initCollection(collection)
 
 
 ## Filtering & Sorting
-TableView has built in support for filtering the data displayed in the table. Filtering can come from any source or html element. TableView can also sort the table based on the table header (`thead > tr > th`, herein 'column'). Sorting is done when a click event is received on the `th` element.
+TableView has built in support for filtering the data displayed in the table. The filtering value can come from any source or html element. TableView can also sort the table based on the table header (`thead > tr > th`, herein 'column'). Sorting is done when a click event is received on the `th` element.
 
 ### Filtering data
 TableView can filter the data in the table when the data comes from a collection (i.e. when a collection is passed to the body using `this.body.initCollection()`). To filter the data in a table, a filter function should be added to the table body:
@@ -141,8 +141,10 @@ table.addCol({
 
 ```
 
+There are three sort 'states': 1. up, 2. down, 3. reset. The first two are obvious; reset resets the collection to its original order but sorting based on the the models `cid` attribute. TableView should handle the states without any intervention.
+
 ### Adding a custom sorter
-Custom sorters can be passed as shown above. A sorter takes two models and returns a boolean value if the first model sorts higher than the second.
+Custom sorters can be passed as shown above. A sorter takes two models and returns a `true` if the first model sorts higher than the second.
 
 A sorter should have the following signature:
 
@@ -154,8 +156,8 @@ where `a` and `b` are the models that will be compared.
 Sorting methods should use the `getAttr(model, attribute)` method to retrieve the value to compare:
 
 ```js
-var firstValue getAttr(a, this.attr)
-var secondValue getAttr(b, this.attr)
+var firstValue = getAttr(a, this.attr)
+var secondValue = getAttr(b, this.attr)
 ```
 
-The function should check the Boolean `this.isReverse` to determine the sort order and should return `true` if `a` should be sorted higher than `b`, otherwise `false`. See the [builtin sorter methods](https://github.com/mbrevda/backbone-tableview/blob/master/src/sorter.js#L35-L56) for an example. 
+The function should check the boolean `this.isReverse` to determine the sort order and should return `true` if `a` should be sorted higher than `b`, otherwise `false`. See the [builtin sorter methods](https://github.com/mbrevda/backbone-tableview/blob/master/src/sorter.js#L35-L56) for an example. 
