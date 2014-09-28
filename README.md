@@ -101,6 +101,34 @@ var collection = new Backbone.Collection([/* models */])
 table.body.initCollection(collection)
 ```
 
+TabelView includes a generic `tr` generator which simple takes all attributes in a model and appends them as a `td`. In some cases, it may be desirable to have a more elaborate `tr` build that can use a custom template or manipulate values before appending them.
+
+To do that, create a custom view that extends `TableView.tbodyTr`. Here is an example of what such a view might look like:
+
+```js
+var Backbone = require('backbone'),
+    TableView = require('backbone-tableview'),
+    _ = require('underscore')
+
+
+module.exports = TableView.tbodyTr.extend({
+    render: function() {
+        var data = this.model.toJSON()
+        data.amount = '$' + parseFloat(data.amount).toFixed(0)
+        var tr = _.reduce(data, function(tr, attr){
+            return tr += '<td>' + attr + '</td>'
+        }, '')
+
+        this.$el.html(tr)
+    }
+})
+```
+
+Set the body to use the custom tr view by setting the `tr` attribute of the body. i.e.:
+
+```js
+this.body.tr = require('my-custom-tr')
+```
 
 ## Filtering & Sorting
 TableView has built in support for filtering the data displayed in the table. The filtering value can come from any source or html element. TableView can also sort the table based on the table header (`thead > tr > th`, herein 'column'). Sorting is done when a click event is received on the `th` element.
