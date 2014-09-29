@@ -18,7 +18,10 @@
     "child",
     "childview",
     "children",
-    "collection"
+    "collection",
+    "table",
+    "tables",
+    "tableview"
   ],
   "author": "mbrevda@gmail.com",
   "license": "ISC",
