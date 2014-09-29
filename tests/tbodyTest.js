@@ -109,6 +109,13 @@ describe('TBody', function(){
 
         this.v.filter('foo').should.be.false
     })
+    
+    it('filter names may contain spaces', function(){
+        this.v.addFilter('some name', function(){})
+        this.v.removeFilter('some name')
+
+        Object.keys(this.v.filters).length.should.eql(0)
+    })
 
     it('getSorter() should return a valid sorter', function(){
         this.v.getSorter('name', function(){}).should.be.type('function')
