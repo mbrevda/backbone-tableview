@@ -7,13 +7,14 @@ var Backbone = require('backbone'),
 module.exports = KinView.extend({
     tagName: 'tr',
     exclusiveState: true,
+    Th: Th,
     initialize: function() {
         this.children.model = thModel
         this.render()
     },
     addCol: function(opts) {
         var model = this.add({
-            view: new Th({
+            view: new this.Th({
                 text: opts.text || '',
                 className: opts.click ? 'sortable' : ''
             }),
