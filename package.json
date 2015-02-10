@@ -30,23 +30,23 @@
   },
   "homepage": "https://github.com/mbrevda/backbone-tableview",
   "dependencies": {
-    "backbone": "^1.1.2",
+    "backbone": "^1",
     "backbone-kinview": "^0",
-    "jquery": "^2.1.1",
-    "underscore": "^1.7.0"
+    "jquery": "^2",
+    "underscore": "^1"
   },
   "devDependencies": {
-    "browserify": "^5.11.2",
-    "gulp": "^3.8.8",
+    "browserify": "^8",
+    "gulp": "^3",
     "gulp-coverage": "^0.3.27",
     "gulp-if": "^1.2.4",
     "gulp-jshint": "^1.8.4",
-    "gulp-mocha": "^1.1.0",
+    "gulp-mocha": "^2",
     "gulp-util": "^3.0.1",
-    "jsdom": "^1.0.0-pre.6",
+    "jsdom": "^3",
     "minimist": "^1.1.0",
-    "mocha": "^1.21.4",
-    "should": "^4.0.4",
+    "mocha": "^2",
+    "should": "^5",
     "through2": "^0.6.1",
     "vinyl-source-stream": "^1.0.0"
   }
