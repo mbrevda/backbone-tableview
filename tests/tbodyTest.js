@@ -6,8 +6,8 @@ var Tbody = require('../src').tbody
 
 describe('TBody', function(){
     beforeEach(function(){
-        this.v = new Tbody()
-        this.c = new Backbone.Collection([
+        this.view = new Tbody()
+        this.collection = new Backbone.Collection([
                 {foo: 'bar0'},
                 {foo: 'bar1'},
                 {foo: 'bar2'}
@@ -16,56 +16,56 @@ describe('TBody', function(){
 
     it('addRow() should add a row', function(){
         var m = new Backbone.Model({foo: 'bar'})
-        this.v.addRow(m)
+        this.view.addRow(m)
 
-        this.v.$el.find('tr').eq(0).find('td').eq(0).html().should.eql('bar')
+        this.view.$el.find('tr').eq(0).find('td').eq(0).html().should.eql('bar')
     })
 
     it('setCollection() should add a colleciton', function(){
-        this.v.setCollection.call(this.v, this.c)
+        this.view.setCollection.call(this.view, this.collection)
 
-        this.v.$el.find('tr').eq(0).find('td').eq(0).text().should.eql('bar0')
-        this.v.$el.find('tr').eq(1).find('td').eq(0).text().should.eql('bar1')
-        this.v.$el.find('tr').eq(2).find('td').eq(0).text().should.eql('bar2')
+        this.view.$el.find('tr').eq(0).find('td').eq(0).text().should.eql('bar0')
+        this.view.$el.find('tr').eq(1).find('td').eq(0).text().should.eql('bar1')
+        this.view.$el.find('tr').eq(2).find('td').eq(0).text().should.eql('bar2')
     })
 
     it('adding to a colleciton should add more tr\'s ', function(){
-        this.v.setCollection.call(this.v, this.c)
+        this.view.setCollection.call(this.view, this.collection)
 
-        this.v.$el.find('tr').eq(2).find('td').eq(0).text().should.eql('bar2')
+        this.view.$el.find('tr').eq(2).find('td').eq(0).text().should.eql('bar2')
 
-        this.c.add({foo: 'bar3'})
+        this.collection.add({foo: 'bar3'})
 
-        this.v.$el.find('tr').eq(3).find('td').eq(0).text().should.eql('bar3')
+        this.view.$el.find('tr').eq(3).find('td').eq(0).text().should.eql('bar3')
     })
 
     it('clearing colleciton should remove all tr\'s', function(){
-        this.v.setCollection.call(this.v, this.c)
+        this.view.setCollection.call(this.view, this.collection)
 
-        this.v.$el.find('tr').eq(2).find('td').eq(0).text().should.eql('bar2')
+        this.view.$el.find('tr').eq(2).find('td').eq(0).text().should.eql('bar2')
 
-        this.c.remove(this.c.models)
+        this.collection.remove(this.collection.models)
 
-        this.v.$el.find('tr').length.should.eql(0)
+        this.view.$el.find('tr').length.should.eql(0)
     })
 
     it('Initializeing view with colleciton', function(){
-        this.v = new Tbody({collection: this.c})
+        this.view = new Tbody({collection: this.collection})
 
-        this.v.$el.find('tr').length.should.eql(3)
+        this.view.$el.find('tr').length.should.eql(3)
     })
 
     it('Should stop listening when a colleciton is replaced', function(){
-        this.v.setCollection.call(this.v, this.c)
+        this.view.setCollection.call(this.view, this.collection)
 
-        this.c.remove(this.c)
+        this.collection.remove(this.collection)
 
-        this.v.setCollection.call(this.v, new Backbone.Collection())
+        this.view.setCollection.call(this.view, new Backbone.Collection())
 
-        this.v.$el.find('tr').length.should.eql(0)
-        this.c.add({foo: 'bar4'})
+        this.view.$el.find('tr').length.should.eql(0)
+        this.collection.add({foo: 'bar4'})
 
-        this.v.$el.find('tr').length.should.eql(0)
+        this.view.$el.find('tr').length.should.eql(0)
     })
 
     /*
@@ -80,6 +80,6 @@ describe('TBody', function(){
     })*/
 
     it('getSorter() should return a valid sorter', function(){
-        this.v.getSorter('name', function(){}).should.be.type('function')
+        this.view.getSorter('name', function(){}).should.be.type('function')
     })
 })
