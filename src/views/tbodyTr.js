@@ -1,12 +1,8 @@
-var Backbone = require('backbone'),
+var ChildView = require('backbone-collectionview').childView,
     _ = require('underscore')
 
-module.exports = Backbone.View.extend({
+module.exports = ChildView.extend({
     tagName: 'tr',
-    initialize: function(opts) {
-        this.model = opts.model
-        this.render()
-    },
     render: function() {
         var tr = _.reduce(this.model.toJSON(), function(tr, attr){
             return tr += '<td>' + attr + '</td>'

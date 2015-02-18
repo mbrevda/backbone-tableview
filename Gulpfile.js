@@ -76,6 +76,7 @@ gulp.task('test', ['lint'], function(){
         .pipe(mocha({
             reporter: 'spec'
         }))
+        //.on("error", gutil.log)
 })
 
 gulp.task('testc', ['lint'], function(){

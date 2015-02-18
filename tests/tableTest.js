@@ -22,7 +22,7 @@ describe('Table', function(){
 
     it('addColumn()', function(){
         var view = this.v.addColumn({text: 'foo'})
-        
+
         view.should.be.instanceof(Backbone.View)
         view.$el.text().should.eql('foo')
     })
