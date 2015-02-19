@@ -98,7 +98,7 @@ Passing a collection to the table will allow the table to auto-append all items 
 
 ```js
 var collection = new Backbone.Collection([/* models */])
-table.body.initCollection(collection)
+table.body.setCollection(collection)
 ```
 
 TabelView includes a generic `tr` generator which simple takes all attributes in a model and appends them as a `td`. In some cases, it may be desirable to have a more elaborate `tr` build that can use a custom template or manipulate values before appending them.
@@ -131,24 +131,13 @@ this.body.tr = require('my-custom-tr')
 ```
 
 ## Filtering & Sorting
-TableView has built in support for filtering the data displayed in the table. The filtering value can come from any source or html element. TableView can also sort the table based on the table header (`thead > tr > th`, herein 'column'). Sorting is done when a click event is received on the `th` element.
+**Filtering and Sorting delegate to [backbone-collectionview](https://github.com/mbrevda/backbone-collectionview)**
 
-### Filtering data
-TableView can filter the data in the table when the data comes from a collection (i.e. when a collection is passed to the body using `this.body.initCollection()`). To filter the data in a table, a filter function should be added to the table body:
-
-```js
-this.body.addFilter('name', function(){/* do something */})
-```
-
-Filter functions should return a boolean value. Only models with truthy values on ALL filters will be shown.
-
-A table can have multiple filters. To add more filters, just call `addFilter()` as necessary. Note, multiple filters will be treaded as AND's (not as OR's), and as above - ALL filters must return true for a model to be displayed.
-
-A filter can be removed by calling `removeFilter('name')`.
-
-Whenever a filter is added or removed, the table will be re-filtered. If rows have been added that aren't part of the collection, they will inadvertently be removed.
+TableView delegates to Backbone CollectionView for filtering the data displayed in the table.  TableView can also sort the table based on the table header (`thead > tr > th`, herein 'column'). Sorting is done when a click event is received on the `th` element. To learn more about filtering, please see the CollectionView documentation. Currently, only the tbody view implements collectionview.
 
 ### Sorting rows
+**Sorting will soon be removed from TableView** It will be replaced by sorting via CollectionView
+
 To specify that a column should be sortable, pass it a sorter when creating it:
 
 ```js
