@@ -6,7 +6,7 @@ for the underlying view management.
 
 # Installation
 
-KinView has been designed to `require`'d by [browserify](http://browserify.org/),
+TableView has been designed to `require`'d by [browserify](http://browserify.org/),
 and is currently only supported in that environment. To install:
 
 ```
@@ -131,7 +131,7 @@ this.body.tr = require('my-custom-tr')
 ```
 
 ## Filtering & Sorting
-**Filtering and Sorting delegate to [backbone-collectionview](https://github.com/mbrevda/backbone-collectionview)**
+**Filtering and Sorting has been delegated to [backbone-collectionview](https://github.com/mbrevda/backbone-collectionview)**
 
 TableView delegates to Backbone CollectionView for filtering the data displayed in the table.  TableView can also sort the table based on the table header (`thead > tr > th`, herein 'column'). Sorting is done when a click event is received on the `th` element. To learn more about filtering, please see the CollectionView documentation. Currently, only the tbody view implements collectionview.
 
