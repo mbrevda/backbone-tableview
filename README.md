@@ -127,7 +127,7 @@ module.exports = TableView.tbodyTr.extend({
 Set the body to use the custom tr view by setting the `tr` attribute of the body. i.e.:
 
 ```js
-this.body.tr = require('my-custom-tr')
+this.body.childView = require('my-custom-tr')
 ```
 
 ## Filtering & Sorting
