@@ -31,7 +31,7 @@
   "homepage": "https://github.com/mbrevda/backbone-tableview",
   "dependencies": {
     "backbone": "^1",
-    "backbone-collectionview": "0.0.2",
+    "backbone-collectionview": "^0",
     "backbone-kinview": "^0",
     "jquery": "^2",
     "underscore": "^1"
