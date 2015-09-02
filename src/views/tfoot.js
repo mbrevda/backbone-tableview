@@ -10,7 +10,7 @@ module.exports = KinView.extend({
     },
     render: function(data) {
         this.tr.render(data)
-        this.$el.append(this.tr.$el)
+        this.el.appendChild(this.tr.el)
     },
     remove: function() {
         this.tr.remove()

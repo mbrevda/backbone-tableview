@@ -8,6 +8,6 @@ module.exports = ChildView.extend({
             return tr += '<td>' + attr + '</td>'
         }, '')
 
-        this.$el.html(tr)
+        this.el.innerHTML = tr
     }
 })

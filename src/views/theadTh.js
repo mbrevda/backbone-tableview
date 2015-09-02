@@ -14,26 +14,27 @@ module.exports = Backbone.View.extend({
         this.render()
     },
     render: function() {
-        this.$el.html(this.template({text: this.text}))
+        this.el.innerHTML = this.template({text: this.text})
     },
     renderState: function(foo, order) {
-        var i = this.$('i')
+        var i = this.$('i')[0]
 
         switch (order) {
             case 'up':
-                this.$el.addClass('active')
-                i.removeClass('fa-caret-down')
-                    .addClass('fa-caret-up')
-                    .css({visibility: 'visible'})
+                this.el.classList.add('active')
+                i.classList.remove('fa-caret-down')
+                i.classList.add('fa-caret-up')
+                i.style.visibility = 'visible'
                 break
             case 'down':
-                this.$el.addClass('active')
-                i.removeClass('fa-caret-up')
-                    .addClass('fa-caret-down').css({visibility: 'visible'})
+                this.el.classList.add('active')
+                i.classList.remove('fa-caret-up')
+                i.classList.add('fa-caret-down')
+                i.style.visibility = 'visible'
                 break;
             default:
-                this.$el.removeClass('active')
-                i.css({visibility: 'hidden'})
+                this.el.classList.remove('active')
+                i.style.visibility = 'hidden'
                 break
         }
     }

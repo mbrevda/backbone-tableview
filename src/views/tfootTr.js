@@ -11,6 +11,6 @@ module.exports = Backbone.View.extend({
             return tr += '<th>' + attr + '</th>'
         }, '')
 
-        this.$el.html(tr)
+        this.el.innerHTML = tr
     }
 })

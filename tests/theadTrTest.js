@@ -1,7 +1,6 @@
 var should = require('should'),
     Backbone = require('backbone')
 
-Backbone.$ = global.window.$
 var TheadTr = require('../src').theadTr
 
 describe('TheadTr', function(){

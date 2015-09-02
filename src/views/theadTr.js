@@ -26,7 +26,7 @@ module.exports = KinView.extend({
 	    view.listenTo(model, 'change:state', view.renderState)
 
         if (opts.click) {
-            view.$el.on(
+            view.delegate(
                 'click',
                 _.bind(this.clickState, this, model, opts.click)
             )

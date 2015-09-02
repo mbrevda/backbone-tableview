@@ -1,7 +1,6 @@
 var should = require('should'),
     Backbone = require('backbone')
 
-Backbone.$ = global.window.$
 var Sorter = require('../src').sorter
 
 describe('Sorter', function(){
@@ -18,12 +17,12 @@ describe('Sorter', function(){
         var s = (new Sorter(this.collection, 'name', function(){})).getSorter()
         s.should.be.type('function')
     })
-    
+
     it('should determain sort order up', function(){
         var m = new Backbone.Model({state: 'up'})
         var sorter = new Sorter(this.collection, 'name', function(){})
         var sort = sorter.getSorter()(m)
-        
+
         sorter.isReverse.should.be.false
     })
 
@@ -31,7 +30,7 @@ describe('Sorter', function(){
         var m = new Backbone.Model({state: 'down'})
         var sorter = new Sorter(this.collection, 'name', function(){})
         var sort = sorter.getSorter()(m)
-        
+
         sorter.isReverse.should.be.true
     })
 
@@ -51,7 +50,7 @@ describe('Sorter', function(){
 
         this.collection.pluck('name').should.eql(['adam', 'jim', 'marry', 'zach'])
     })
-    
+
     it('string should sort down', function(){
         var s = (new Sorter(this.collection, 'name', 'string')).getSorter()
         var m = new Backbone.Model({state: 'down'})
@@ -60,7 +59,7 @@ describe('Sorter', function(){
 
         this.collection.pluck('name').should.eql(['zach', 'marry', 'jim', 'adam'])
     })
-    
+
     it('int should sort up', function(){
         var s = (new Sorter(this.collection, 'age', 'int')).getSorter()
         var m = new Backbone.Model({state: 'up'})
@@ -69,7 +68,7 @@ describe('Sorter', function(){
 
         this.collection.pluck('name').should.eql(['zach', 'jim', 'adam', 'marry'])
     })
-    
+
     it('int should sort down', function(){
         var s = (new Sorter(this.collection, 'age', 'int')).getSorter()
         var m = new Backbone.Model({state: 'down'})
@@ -92,15 +91,15 @@ describe('Sorter', function(){
         var m = new Backbone.Model({state: 'down'})
 
         s(m)
-        
+
         this.collection.pluck('name').should.eql(['zach', 'marry', 'jim', 'adam'])
         this.collection.toJSON().should.not.eql(orig)
 
         var s2 = (new Sorter(this.collection, 'name', 'string')).getSorter()
         var m2 = new Backbone.Model({state: null})
-        
+
         s2(m2)
-        
+
         this.collection.toJSON().should.eql(orig)
     })
 })

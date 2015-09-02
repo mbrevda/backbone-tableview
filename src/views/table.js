@@ -13,8 +13,8 @@ module.exports = Backbone.View.extend({
         this.superRemove = Backbone.View.prototype.remove
     },
     render: function() {
-        this.$el.append(this.head.$el)
-        this.$el.append(this.body.$el)
+        this.el.appendChild(this.head.el)
+        this.el.appendChild(this.body.el)
 
         return this
     },
@@ -36,7 +36,7 @@ module.exports = Backbone.View.extend({
     setFoot: function(data) {
         if (!this.foot) {
             this.foot = new TFoot()
-            this.$('thead').eq(0).after(this.foot.$el)
+            this.$('thead')[0].parentNode.insertBefore(this.foot.el, this.$('thead')[0].nextSibling)
         }
 
         this.foot.tr.render(data)

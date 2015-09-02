@@ -1,7 +1,6 @@
 var should = require('should'),
     Backbone = require('backbone')
 
-Backbone.$ = global.window.$
 var Tr = require('../src').tbodyTr
 
 describe('tbodyTr', function(){
@@ -9,7 +8,7 @@ describe('tbodyTr', function(){
         var v = new Tr({
             model: new Backbone.Model({foo: 'bar'})
         })
-        
+
         v.$el.find('td').length.should.eql(1)
         v.$el.find('td').text().should.eql('bar')
     })

@@ -9,7 +9,7 @@ module.exports = KinView.extend({
         this.render()
     },
     render: function() {
-        this.$el.append(this.row.$el)
+        this.el.appendChild(this.row.el)
     },
     // raw add, you should probably be using this.row.addCol()
     add: function() {
